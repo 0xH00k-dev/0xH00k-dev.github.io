@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0xH00k-dev</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body id="top">
+
+<div id="scroll-progress"></div>
+<button type="button" id="toggle-anim">Animations: ВКЛ</button>
+<a id="lang-btn" href="index_ru.html" title="English version">🇷🇺 RU</a>
+
+<canvas id="starfield"></canvas>
+
+<header class="scroll-step">
+    <div class="container">
+        <img src="./logo.png" alt="0xH00k-dev" class="hero-logo">
+        <div class="badge">All O's are zeros</div>
+        <h1>0xH00k<span>-dev</span></h1>
+        <!--<p class="subtitle">Memory manipulation, hooking &amp; game internals</p>-->
+        <div class="nav-list">
+            <a href="#cheats" class="btn-line">Cheats</a>
+            <a href="#license" class="btn-line">Copyright & License</a>
+            <a href="#about" class="btn-line">About developer</a>
+        </div>
+    </div>
+</header>
+
+<section id="cheats" class="scroll-step">
+    <div class="container">
+        <h2>Cheats</h2>
+        
+        
+<a href="cheats/CubeKestrel/index_us.html" style="text-decoration: none; color: inherit; display: block;">
+    <div class="sub-block" style="display: flex; align-items: center; gap: 16px; cursor: pointer;">
+        <img src="cubekestrel_logo.png" alt="CubeKestrel Logo" style="width: 64px; height: 64px; border-radius: 12px; border: 1px solid #ef4444; flex-shrink: 0;">
+        <div>
+            <h3 style="margin: 0 0 6px 0;">CubeKestrel</h3>
+            <p style="margin: 0;">Lightweight and stealthy client-side cheat for Minecraft (Fabric) featuring a cheat-hiding mode for screen-share checks, auto-calibration for any anticheat, and much more.</p>
+        </div>
+    </div>
+</a>
+
+        
+    </div>
+</section>
+
+<!--<section id="tools" class="scroll-step">
+    <div class="container">
+        <h2>Инструменты</h2>
+        <div class="sub-block"><h3></h3><p></p></div>
+        <div class="sub-block"><h3></h3><p></p></div>
+    </div>
+</section>-->
+<section id="license" class="scroll-step">
+    <div class="container">
+        <h2>Copyright & License</h2>
+        <div class="sub-block">
+            <h3>License GNU AGPLv3</h3>
+            <p>All of my projects and source code are distributed under the free GNU Affero General Public License v3.0 (AGPLv3). You are free to study, modify, and distribute the code provided that you preserve the original author attribution (0xH00k-dev) and release the source code of any modifications under the same license.</p>
+            <p style="margin-top: 10px;"><a href="https://gnu.org" target="_blank" rel="noopener noreferrer" style="color: #00f0ff; text-decoration: none; border-bottom: 1px dashed #00f0ff;">Read the full text of the AGPLv3 license ↗</a></p>
+        </div>
+<div class="sub-block">
+    <h3>Disclaimer</h3>
+    <p>All projects presented on this website are independent original works and are not affiliated with any third-party companies. The software is provided "AS IS" strictly for informational and educational purposes.</p>
+</div>
+
+    </div>
+</section>
+
+<section id="about" class="scroll-step">
+    <div class="container">
+        <h2>About developer</h2>
+        <div class="sub-block">
+            <h3>Game Hacking &amp; Modding</h3>
+            <p>I focus exclusively on developing cheats and client-side utilities for video games.</p>
+            <p style="margin-top: 8px;">If you have any questions regarding any of my projects, feel free to email me at: <a href="mailto:твой_email@example.com" class="inline-link">твой_email@example.com</a></p>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    <div class="container">0xH00k-dev • <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+</footer>
+
+<button type="button" id="next-btn" title="Next">↓</button>
+<button type="button" id="top-btn" title="Go up">↑</button>
+
+<script>
+const canvas = document.getElementById('starfield'), ctx = canvas.getContext('2d', { alpha: false });
+const animBtn = document.getElementById('toggle-anim');
+let w, h, cx, cy, tx = 0, ty = 0, ox = 0, oy = 0, lastT = 0, rafId = null;
+let animOn = localStorage.getItem('hookdev_anim') !== 'off';
+
+function resize() { w = canvas.width = innerWidth; h = canvas.height = innerHeight; cx = w / 2; cy = h / 2; }
+const stars = Array.from({ length: 65 }, () => ({ x: 0, y: 0, z: 0 }));
+function resetStar(s, init) {
+    s.x = (Math.random() - 0.5) * w * 1.5;
+    s.y = (Math.random() - 0.5) * h * 1.5;
+    s.z = init ? Math.random() * w : w;
+}
+
+function drawStars(t) {
+    if (!animOn) return;
+    rafId = requestAnimationFrame(drawStars);
+    if (document.hidden || t - lastT < 33) return;
+    lastT = t;
+
+    ctx.fillStyle = '#0a0709';
+    ctx.fillRect(0, 0, w, h);
+    ox += (tx - ox) * 0.08; oy += (ty - oy) * 0.08;
+    ctx.fillStyle = 'rgba(239, 68, 68, 0.7)';
+
+    for (const s of stars) {
+        s.z -= 3.5;
+        if (s.z <= 1) resetStar(s, false);
+        const sx = (s.x / s.z) * (w * 0.4) + cx + ox;
+        const sy = (s.y / s.z) * (w * 0.4) + cy + oy;
+        if (sx >= 0 && sx <= w && sy >= 0 && sy <= h) {
+            const sz = Math.max(1, (1 - s.z / w) * 2.5);
+            ctx.fillRect(sx, sy, sz, sz);
+        }
+    }
+}
+
+function syncAnim() {
+    document.body.classList.toggle('no-anim', !animOn);
+    animBtn.textContent = animOn ? 'Animations: ON' : 'Animations: OFF';
+    animBtn.classList.toggle('off', !animOn);
+
+    if (animOn && !rafId) rafId = requestAnimationFrame(drawStars);
+    if (!animOn) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+        wheelActive = false;
+        if (scrollAnimId) cancelAnimationFrame(scrollAnimId);
+        ctx.fillStyle = '#0a0709';
+        ctx.fillRect(0, 0, w, h);
+    }
+}
+
+animBtn.onclick = () => { animOn = !animOn; localStorage.setItem('hookdev_anim', animOn ? 'on' : 'off'); syncAnim(); };
+onmousemove = e => { if (animOn) { tx = -(e.clientX / w - 0.5) * 90; ty = -(e.clientY / h - 0.5) * 90; } };
+onmouseleave = () => { tx = ty = 0; };
+onresize = () => { resize(); if (!animOn) syncAnim(); };
+resize(); stars.forEach(s => resetStar(s, true)); syncAnim();
+
+let scrollAnimId = null;
+let wheelTarget = scrollY, wheelCurrent = scrollY, wheelActive = false;
+
+function smoothTo(to, hash) {
+    wheelActive = false;
+    if (scrollAnimId) cancelAnimationFrame(scrollAnimId);
+
+    if (!animOn) {
+        scrollTo(0, to);
+        wheelTarget = wheelCurrent = to;
+        if (hash && history.pushState) history.pushState(null, null, hash);
+        return;
+    }
+
+    const from = scrollY, dist = to - from;
+    const duration = Math.min(3000, Math.max(900, Math.abs(dist) * 0.8));
+    let start = null;
+    const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const step = now => {
+        if (!start) start = now;
+        const p = Math.min((now - start) / duration, 1);
+        const pos = from + dist * ease(p);
+        scrollTo(0, pos);
+        wheelTarget = wheelCurrent = pos;
+
+        if (p < 1) {
+            scrollAnimId = requestAnimationFrame(step);
+        } else {
+            scrollAnimId = null;
+            if (hash && history.pushState) history.pushState(null, null, hash);
+        }
+    };
+    scrollAnimId = requestAnimationFrame(step);
+}
+
+function wheelLoop() {
+    if (!wheelActive || !animOn) return;
+    const diff = wheelTarget - wheelCurrent;
+    wheelCurrent += diff * 0.1;
+    scrollTo(0, wheelCurrent);
+
+    if (Math.abs(diff) > 0.5) {
+        requestAnimationFrame(wheelLoop);
+    } else {
+        scrollTo(0, wheelTarget);
+        wheelActive = false;
+    }
+}
+
+addEventListener('wheel', e => {
+    if (!animOn || e.ctrlKey) return;
+    e.preventDefault();
+    if (scrollAnimId) { cancelAnimationFrame(scrollAnimId); scrollAnimId = null; }
+
+    if (!wheelActive) {
+        wheelCurrent = scrollY;
+        wheelTarget = scrollY;
+        wheelActive = true;
+        requestAnimationFrame(wheelLoop);
+    }
+
+    const maxScroll = document.documentElement.scrollHeight - innerHeight;
+    wheelTarget = Math.max(0, Math.min(maxScroll, wheelTarget + e.deltaY * 1.1));
+}, { passive: false });
+
+document.querySelectorAll('a[href^="#"]').forEach(a => a.onclick = e => {
+    const id = a.getAttribute('href').slice(1), el = document.getElementById(id);
+    if (el) { e.preventDefault(); smoothTo(el.getBoundingClientRect().top + scrollY, '#' + id); }
+});
+
+const steps = [...document.querySelectorAll('.scroll-step')];
+const nextBtn = document.getElementById('next-btn'), topBtn = document.getElementById('top-btn'), bar = document.getElementById('scroll-progress');
+
+nextBtn.onclick = () => {
+    const next = steps.find(s => s.getBoundingClientRect().top + scrollY > scrollY + 20);
+    if (next) smoothTo(next.getBoundingClientRect().top + scrollY, next.id ? '#' + next.id : null);
+};
+topBtn.onclick = () => smoothTo(0, '#top');
+
+function updateUI() {
+    const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + '%';
+    topBtn.classList.toggle('show', y > 200);
+    const lastTop = steps[steps.length - 1].getBoundingClientRect().top + y;
+    nextBtn.classList.toggle('hidden', y >= lastTop - 20 || y >= max - 10);
+}
+addEventListener('scroll', updateUI, { passive: true });
+addEventListener('resize', updateUI, { passive: true });
+updateUI();
+</script>
+</body>
+</html>

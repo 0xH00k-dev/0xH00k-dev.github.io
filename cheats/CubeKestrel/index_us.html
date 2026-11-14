@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0xH00k-dev</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body id="top">
+
+<div id="scroll-progress"></div>
+<button type="button" id="toggle-anim">Анимации: ВКЛ</button>
+<a id="lang-btn" href="index_ru.html" title="English version">🇷🇺 RU</a>
+
+<canvas id="starfield"></canvas>
+<header class="scroll-step">
+    <div class="container">
+        <img src="cubekestrel_logo.png" alt="0xH00k-dev" class="hero-logo">
+        <div class="badge">0xH00k-dev</div>
+        <h1>Cube<span>Kestrel</span></h1>
+        <!--<p class="subtitle">Memory manipulation, hooking &amp; game internals</p>-->
+        <div class="nav-list">
+            <a href="#howtoinstall" class="btn-line">How to install?</a>
+            <a href="#howtouse" class="btn-line">How to use?</a>
+            <a href="#whatinside" class="btn-line">What's inside?</a>
+
+            <a href="#license" class="btn-line">Copyright</a>
+            <a href="#about" class="btn-line">About Developer</a>
+        </div>
+    </div>
+</header>
+
+<section id="howtoinstall" class="scroll-step">
+    <div class="container">
+        <h2>How to install?</h2>
+        <div class="sub-block">
+            <h3>1. Download the cheat from GitHub</h3>
+            <div class="download-box">
+<select id="version-select" class="version-select">
+    <option value="" disabled selected>Choose version</option>
+    <option value="https://github.com/0xH00k-dev/CubeKestrel/releases/download/v1.0.0/cubekestrel-1.0.0.jar">v1.0.0 — Minecraft 1.21 (Fabric)</option>
+</select>
+
+<button id="gh-download-btn" class="btn-line btn-download">Download ↗</button>
+
+<script>
+document.getElementById('gh-download-btn').addEventListener('click', function() {
+    const select = document.getElementById('version-select');
+    const selectedUrl = select.value;
+    
+    if (selectedUrl) {
+        // Исправлено: убрана лишняя запятая в строке флагов
+        window.open(selectedUrl, '_blank', 'noopener,noreferrer');
+    }
+});
+</script>
+            </div>
+        </div>
+        <div class="sub-block">
+            <h3>2. Install Fabric Loader and Fabric API</h3>
+            <p>Make sure you have <a href="https://fabricmc.net" target="_blank" rel="noopener noreferrer" class="inline-link">Fabric Loader</a> installed for your <strong>Minecraft</strong> version, along with the corresponding <strong>Fabric API</strong> mod.</p>
+        </div>
+        <div class="sub-block">
+            <h3>3. Place the files into the mods folder</h3>
+            <p>Move the downloaded <code>cubekestrel-1.0.0.jar</code> and <code>fabric-api.jar</code> files into your <code>.minecraft/mods</code> folder.</p>
+        </div>
+    </div>
+</section>
+
+
+<section id="howtouse" class="scroll-step">
+    <div class="container">
+        <h2>How to use?</h2>
+        <div class="sub-block">
+            <h3>1. Opening the menu</h3>
+            <p>Launch the game and go to <strong>Options → Controls → Key Binds</strong>. The settings tab for the <strong>CubeKestrel</strong> cheat is located at the very top of the list.</p>
+        </div>
+        <div class="sub-block">
+            <h3>2. Anticheat auto-calibration</h3>
+            <p>Before using movement modules (<strong>Speed</strong> and <strong>HighJump</strong>) on a server, it is recommended to click the <strong>"AC Calibration"</strong> button in the menu header. Your character will automatically sprint and jump for 5 seconds to detect the server's limits and set safe values (may occasionally work inaccurately).</p>
+        </div>
+        <div class="sub-block">
+            <h3>3. Controlling features and X-Ray</h3>
+            <p>Toggle the desired modules using hotkeys (by default: <code>G</code> — FullBright, <code>H</code> — PlayerESP, <code>N</code> — AutoWaterDrop, <code>R</code> — BowAimbot; you can customize them). In the <strong>X-Ray</strong> settings, you can open a searchable block list and select the ores you need.</p>
+        </div>
+        <div class="sub-block">
+            <h3>4. Hiding during a screen-share check (Panic Mode)</h3>
+            <p>If you are called in for a cheat check with screen sharing, press the <code>P</code> key (can be changed in settings). The cheat will instantly disable all features, remove the HUD from the screen, hide its tab from the Controls settings, and disappear from the mod list. Pressing <code>P</code> again will restore everything.</p>
+        </div>
+    </div>
+</section>
+
+<section id="whatinside" class="scroll-step">
+    <div class="container">
+        <h2>What's inside and what makes it special?</h2>
+        <div class="sub-block">
+            <h3>Unique menu with no analogues</h3>
+            <p>Unlike conventional cheat clients with bulky overlay windows, <strong>CubeKestrel</strong> is natively built right into Minecraft's standard <em>"Key Binds"</em> menu. All tabs, sliders, block filters, and calibration buttons look just like the game's native interface.</p>
+        </div>
+        <div class="sub-block">
+            <h3>Advanced hiding system (Panic Mode)</h3>
+            <p>When pressing the <code>P</code> key, the mod instantly covers all its tracks in-game: it disables visuals, clears keybindings, strips its section from the Controls settings, and hides itself from the Fabric mod list. During a surface-level screen check, it is impossible to detect — the only way to find the cheat is to manually open the <code>mods</code> folder.</p>
+        </div>
+        <div class="sub-block">
+            <h3>Full set of modules and auto-calibration</h3>
+            <p>Inside, there are 11 well-crafted features for every situation: from automatic calibration for any server's anticheat and <strong>AutoWaterDrop</strong> with inventory bucket swapping, to <strong>X-Ray</strong>, 3D projectile trajectories, and smooth <strong>BowAimbot</strong>.</p>
+        </div>
+    </div>
+</section>
+
+
+<!--<section id="tools" class="scroll-step">
+    <div class="container">
+        <h2>Инструменты</h2>
+        <div class="sub-block"><h3></h3><p></p></div>
+        <div class="sub-block"><h3></h3><p></p></div>
+    </div>
+</section>-->
+<section id="license" class="scroll-step">
+    <div class="container">
+        <h2>Copyright</h2>
+        <div class="sub-block">
+            <h3>GNU AGPLv3 License</h3>
+            <p>The <strong>CubeKestrel</strong> cheat and its source code are distributed under the free GNU Affero General Public License v3.0 (AGPLv3). You are free to study, modify, and distribute the cheat provided that you preserve the original author attribution (0xH00k-dev) and release the source code of any modifications under the same license.</p>
+            <p style="margin-top: 10px;"><a href="https://gnu.org" target="_blank" rel="noopener noreferrer" style="color: #00f0ff; text-decoration: none; border-bottom: 1px dashed #00f0ff;">Read the full text of the AGPLv3 license ↗</a></p>
+        </div>
+        <div class="sub-block">
+            <h3>Disclaimer</h3>
+            <p><strong>CubeKestrel</strong> is an independent original work and is not affiliated with Mojang Studios, Microsoft, or the Fabric developers. The mod is provided "AS IS" strictly for informational and educational purposes.</p>
+        </div>
+    </div>
+</section>
+
+
+    </div>
+</section>
+
+<section id="about" class="scroll-step">
+    <div class="container">
+        <h2>About Developer</h2>
+        <div class="sub-block">
+            <h3>Game Hacking &amp; Modding</h3>
+            <p>I focus exclusively on developing cheats and client-side utilities for video games.</p>
+            <p style="margin-top: 8px;">If you have any questions regarding any of my projects, feel free to email me at: <a href="mailto:твой_email@example.com" class="inline-link">твой_email@example.com</a></p>
+        </div>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="container">0xH00k-dev • <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+</footer>
+
+<button type="button" id="next-btn" title="Next">↓</button>
+<button type="button" id="top-btn" title="Go up">↑</button>
+
+<script>
+const canvas = document.getElementById('starfield'), ctx = canvas.getContext('2d', { alpha: false });
+const animBtn = document.getElementById('toggle-anim');
+let w, h, cx, cy, tx = 0, ty = 0, ox = 0, oy = 0, lastT = 0, rafId = null;
+let animOn = localStorage.getItem('hookdev_anim') !== 'off';
+
+function resize() { w = canvas.width = innerWidth; h = canvas.height = innerHeight; cx = w / 2; cy = h / 2; }
+const stars = Array.from({ length: 65 }, () => ({ x: 0, y: 0, z: 0 }));
+function resetStar(s, init) {
+    s.x = (Math.random() - 0.5) * w * 1.5;
+    s.y = (Math.random() - 0.5) * h * 1.5;
+    s.z = init ? Math.random() * w : w;
+}
+
+function drawStars(t) {
+    if (!animOn) return;
+    rafId = requestAnimationFrame(drawStars);
+    if (document.hidden || t - lastT < 33) return;
+    lastT = t;
+
+    ctx.fillStyle = '#0a0709';
+    ctx.fillRect(0, 0, w, h);
+    ox += (tx - ox) * 0.08; oy += (ty - oy) * 0.08;
+    ctx.fillStyle = 'rgba(239, 68, 68, 0.7)';
+
+    for (const s of stars) {
+        s.z -= 3.5;
+        if (s.z <= 1) resetStar(s, false);
+        const sx = (s.x / s.z) * (w * 0.4) + cx + ox;
+        const sy = (s.y / s.z) * (w * 0.4) + cy + oy;
+        if (sx >= 0 && sx <= w && sy >= 0 && sy <= h) {
+            const sz = Math.max(1, (1 - s.z / w) * 2.5);
+            ctx.fillRect(sx, sy, sz, sz);
+        }
+    }
+}
+
+function syncAnim() {
+    document.body.classList.toggle('no-anim', !animOn);
+    animBtn.textContent = animOn ? 'Анимации: ВКЛ' : 'Анимации: ВЫКЛ';
+    animBtn.classList.toggle('off', !animOn);
+
+    if (animOn && !rafId) rafId = requestAnimationFrame(drawStars);
+    if (!animOn) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+        wheelActive = false;
+        if (scrollAnimId) cancelAnimationFrame(scrollAnimId);
+        ctx.fillStyle = '#0a0709';
+        ctx.fillRect(0, 0, w, h);
+    }
+}
+
+animBtn.onclick = () => { animOn = !animOn; localStorage.setItem('hookdev_anim', animOn ? 'on' : 'off'); syncAnim(); };
+onmousemove = e => { if (animOn) { tx = -(e.clientX / w - 0.5) * 90; ty = -(e.clientY / h - 0.5) * 90; } };
+onmouseleave = () => { tx = ty = 0; };
+onresize = () => { resize(); if (!animOn) syncAnim(); };
+resize(); stars.forEach(s => resetStar(s, true)); syncAnim();
+
+let scrollAnimId = null;
+let wheelTarget = scrollY, wheelCurrent = scrollY, wheelActive = false;
+
+function smoothTo(to, hash) {
+    wheelActive = false;
+    if (scrollAnimId) cancelAnimationFrame(scrollAnimId);
+
+    if (!animOn) {
+        scrollTo(0, to);
+        wheelTarget = wheelCurrent = to;
+        if (hash && history.pushState) history.pushState(null, null, hash);
+        return;
+    }
+
+    const from = scrollY, dist = to - from;
+    const duration = Math.min(3000, Math.max(900, Math.abs(dist) * 0.8));
+    let start = null;
+    const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const step = now => {
+        if (!start) start = now;
+        const p = Math.min((now - start) / duration, 1);
+        const pos = from + dist * ease(p);
+        scrollTo(0, pos);
+        wheelTarget = wheelCurrent = pos;
+
+        if (p < 1) {
+            scrollAnimId = requestAnimationFrame(step);
+        } else {
+            scrollAnimId = null;
+            if (hash && history.pushState) history.pushState(null, null, hash);
+        }
+    };
+    scrollAnimId = requestAnimationFrame(step);
+}
+
+function wheelLoop() {
+    if (!wheelActive || !animOn) return;
+    const diff = wheelTarget - wheelCurrent;
+    wheelCurrent += diff * 0.1;
+    scrollTo(0, wheelCurrent);
+
+    if (Math.abs(diff) > 0.5) {
+        requestAnimationFrame(wheelLoop);
+    } else {
+        scrollTo(0, wheelTarget);
+        wheelActive = false;
+    }
+}
+
+addEventListener('wheel', e => {
+    if (!animOn || e.ctrlKey) return;
+    e.preventDefault();
+    if (scrollAnimId) { cancelAnimationFrame(scrollAnimId); scrollAnimId = null; }
+
+    if (!wheelActive) {
+        wheelCurrent = scrollY;
+        wheelTarget = scrollY;
+        wheelActive = true;
+        requestAnimationFrame(wheelLoop);
+    }
+
+    const maxScroll = document.documentElement.scrollHeight - innerHeight;
+    wheelTarget = Math.max(0, Math.min(maxScroll, wheelTarget + e.deltaY * 1.1));
+}, { passive: false });
+
+document.querySelectorAll('a[href^="#"]').forEach(a => a.onclick = e => {
+    const id = a.getAttribute('href').slice(1), el = document.getElementById(id);
+    if (el) { e.preventDefault(); smoothTo(el.getBoundingClientRect().top + scrollY, '#' + id); }
+});
+
+const steps = [...document.querySelectorAll('.scroll-step')];
+const nextBtn = document.getElementById('next-btn'), topBtn = document.getElementById('top-btn'), bar = document.getElementById('scroll-progress');
+
+nextBtn.onclick = () => {
+    const next = steps.find(s => s.getBoundingClientRect().top + scrollY > scrollY + 20);
+    if (next) smoothTo(next.getBoundingClientRect().top + scrollY, next.id ? '#' + next.id : null);
+};
+topBtn.onclick = () => smoothTo(0, '#top');
+
+function updateUI() {
+    const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + '%';
+    topBtn.classList.toggle('show', y > 200);
+    const lastTop = steps[steps.length - 1].getBoundingClientRect().top + y;
+    nextBtn.classList.toggle('hidden', y >= lastTop - 20 || y >= max - 10);
+}
+addEventListener('scroll', updateUI, { passive: true });
+addEventListener('resize', updateUI, { passive: true });
+updateUI();
+</script>
+</body>
+</html>
