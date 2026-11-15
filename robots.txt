@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://0xh00k-dev.github.io/sitemap.xml
